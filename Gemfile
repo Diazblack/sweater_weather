@@ -19,6 +19,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'webmock'
+  gem 'vcr'
 end
 
 group :development do

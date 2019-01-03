@@ -11,8 +11,8 @@ describe "City Geo Location API" do
 
     location_coordinates = JSON.parse(response.body, symbolize_names: true)
 
-    lat = "39.740002"
-    lon = "-104.980003"
+    lat = '39.740002'
+    lon = '-104.980003'
 
     expect(location_coordinates[:Results][0][:lat]).to eq(lat)
     expect(location_coordinates[:Results][0][:lon]).to eq(lon)

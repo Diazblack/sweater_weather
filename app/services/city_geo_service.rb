@@ -4,7 +4,7 @@ class CityGeoService
   end
 
   def get_coordinates
-    a = get_json("/latlon.php?location=#{@filter[:location]}")
+    get_json("/latlon.php?location=#{@filter[:location]}")
   end
 
   private
