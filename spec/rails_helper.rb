@@ -9,6 +9,7 @@ end
 
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'webmock/rspec'
 
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -43,4 +44,9 @@ Shoulda::Matchers.configure do |config|
 
     with.library :rails
   end
+end
+
+def stub_city_geo_api_call
+  stub_request(:get, "https://devru-latitude-longitude-find-v1.p.mashape.com/latlon.php?location=Denver,CO").
+  to_return(body: File.read("./spec/fixtures/city_geo_coordinates.json"))
 end

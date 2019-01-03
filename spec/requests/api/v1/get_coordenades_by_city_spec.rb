@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe "City Geo Location API" do
   scenario "Get the lat and long of a city" do
+    stub_city_geo_api_call
     city = 'Denver,CO'
 
     get "/api/v1/forecast?location=#{city}"
