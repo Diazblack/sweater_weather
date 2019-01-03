@@ -5,15 +5,13 @@ class CityGeoService
 
   def get_coordinates
     a = get_json("/latlon.php?location=#{@filter[:location]}")
-    require "pry"; binding.pry
   end
 
   private
 
   def get_json(uri)
-    require "pry"; binding.pry
     response = conn.get(uri)
-    JSON.parse(response.body, symbolize_name: true)
+    JSON.parse(response.body, symbolize_names: true)
   end
 
   def conn
