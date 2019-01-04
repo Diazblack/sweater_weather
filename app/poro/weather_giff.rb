@@ -1,14 +1,14 @@
 class WeatherGiff
-  attr_reader :id,
-              :giffs
+  attr_reader :daily_giffs
+
   def initialize(weather, giff)
-    @id = rand(0..11111111)
     @daily_giffs = get_giff(weather, giff)
   end
 
   def get_giff(data_1, data_2 )
-    data_1.zip(data_2).map do |giff|
+    a = data_1.zip(data_2).map do |giff|
       Giff.new(giff)
     end
   end
+
 end
