@@ -7,12 +7,12 @@ describe 'GHPHY API' do
 
     city = 'Denver,CO'
 
-    get "/api/v1/forecast?location=#{city}"
+    get "/api/v1/gifs?location=#{city}"
 
     expect(response).to be_successful
 
-    we_info = JSON.parse(response.body, symbolize_names: true)
+    giff_info = JSON.parse(response.body, symbolize_names: true)
 
-    expect(we_info[:daily][0][:giff]).to eq()
+    expect(giff_info[:daily][0][:giff]).to eq(" ")
   end
 end
