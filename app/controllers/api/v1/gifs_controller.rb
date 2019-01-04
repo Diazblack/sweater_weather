@@ -12,7 +12,7 @@ class Api::V1::GifsController < ApplicationController
 
     object = WeatherGiff.new(daily_weather[:daily][:data], giff_info[:data] )
 
-    render json: GiffSerializer.new(object)
+    render json: WeatherGiffSerializer.new(object)
 
   end
 end

@@ -13,6 +13,7 @@ describe 'GHPHY API' do
 
     giff_info = JSON.parse(response.body, symbolize_names: true)
 
+require "pry"; binding.pry
     expect(giff_info[:daily][0][:giff]).to eq(" ")
   end
 end
