@@ -66,3 +66,8 @@ def stub_dark_sky_api_call
   stub_request(:get, "https://api.darksky.net/forecast/#{ENV['dark_sky_key']}/39.740002,-104.980003?exclude=minutely,flags").
   to_return(body: File.read("./spec/fixtures/darksky_weather_info.json"))
 end
+
+def stub_dark_sky_gift_api_call
+  stub_request(:get, "https://api.darksky.net/forecast/#{ENV['dark_sky_key']}/39.740002,-104.980003?exclude=currently,minutely,hourly,alerts,flags").
+  to_return(body: File.read("./spec/fixtures/giff_weather_info.json"))
+end

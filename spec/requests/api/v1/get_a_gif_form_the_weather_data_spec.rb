@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'GHPHY API' do
   scenario 'get a giff to render with the weather info' do
     stub_city_geo_api_call
-    stub_dark_sky_api_call
+    stub_dark_sky_gift_api_call
 
     city = 'Denver,CO'
 
