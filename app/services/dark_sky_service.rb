@@ -3,7 +3,7 @@ class DarkSkyService
     @filter = data
   end
 
-  def weather_full_info
+  def weather_info
     get_json("/forecast/#{ENV['dark_sky_key']}/#{@filter[:coordinate].lat},#{@filter[:coordinate].lon}?exclude=minutely,flags")
   end
 

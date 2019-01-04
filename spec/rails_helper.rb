@@ -20,6 +20,7 @@ VCR.configure do |config|
   config.hook_into :webmock
   config.configure_rspec_metadata!
   config.filter_sensitive_data("<X-Mashape-Key>") { ENV['city_geo_key'] }
+  config.filter_sensitive_data("<dark_sky_key>") { ENV['dark_sky_key'] }
 end
 begin
   ActiveRecord::Migration.maintain_test_schema!

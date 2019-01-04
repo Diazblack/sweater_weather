@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe CityGeoService do
   before(:all) do
-      @service = CityGeoService.new({location: "Denver,CO"})
+    @service = CityGeoService.new({location: "Denver,CO"})
   end
   it 'exists' do
     expect(@service).to be_a CityGeoService
