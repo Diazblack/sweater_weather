@@ -16,7 +16,7 @@ describe CityGeoService do
           expect(@service.get_coordinates[:Results][0]).to be_a(Hash)
           expect(@service.get_coordinates[:Results][0]).to have_key(:lat)
           expect(@service.get_coordinates[:Results][0]).to have_key(:lon)
-        end 
+        end
       end
     end
   end

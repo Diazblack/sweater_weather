@@ -1,0 +1,3 @@
+class HourlyWeather < CurrentWeather
+
+end 

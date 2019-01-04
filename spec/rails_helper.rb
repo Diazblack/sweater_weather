@@ -60,3 +60,8 @@ def stub_city_geo_api_call
   stub_request(:get, "https://devru-latitude-longitude-find-v1.p.mashape.com/latlon.php?location=Denver,CO").
   to_return(body: File.read("./spec/fixtures/city_geo_coordinates.json"))
 end
+
+def stub_dark_sky_api_call
+  stub_request(:get, "https://api.darksky.net/forecast/#{ENV['dark_sky_key']}/39.740002,-104.980003?exclude=minutely,flags").
+  to_return(body: File.read("./spec/fixtures/darksky_weather_info.json"))
+end
