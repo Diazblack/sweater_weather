@@ -12,7 +12,21 @@ describe 'GHPHY API' do
     expect(response).to be_successful
 
     giff_info = JSON.parse(response.body, symbolize_names: true)
-    require "pry"; binding.pry
-    expect(giff_info[:daily][0][:giff]).to eq(" ")
+
+    expect(giff_info[:daily_giffs].count).to eq(8)
+    expect(giff_info[:daily_giffs][0][:time]).to eq(1546585200)
+    expect(giff_info[:daily_giffs][0][:summary]).to eq("Partly cloudy until afternoon.")
+    expect(giff_info[:daily_giffs][0][:id]).to eq("YnH5fDZPcNJfi")
+    expect(giff_info[:daily_giffs][0][:giff_url]).to eq("https://giphy.com/gifs/weather-dancing-YnH5fDZPcNJfi")
+
+    expect(giff_info[:daily_giffs][3][:time]).to eq(1546844400)
+    expect(giff_info[:daily_giffs][3][:summary]).to eq("Mostly cloudy starting in the evening.")
+    expect(giff_info[:daily_giffs][3][:id]).to eq("rsdDNSViCq8OQ")
+    expect(giff_info[:daily_giffs][3][:giff_url]).to eq("https://giphy.com/gifs/beyonce-nicki-minaj-beyhive-rsdDNSViCq8OQ")
+
+    expect(giff_info[:daily_giffs][7][:time]).to eq(1547190000)
+    expect(giff_info[:daily_giffs][7][:summary]).to eq("Light snow (< 1 in.) in the morning.")
+    expect(giff_info[:daily_giffs][7][:id]).to eq("dWLREYF83ciQg")
+    expect(giff_info[:daily_giffs][7][:giff_url]).to eq("https://giphy.com/gifs/30-rock-weather-dWLREYF83ciQg")
   end
 end
