@@ -10,8 +10,9 @@ class Api::V1::GifsController < ApplicationController
 
     giff_info = JSON.parse(response.body, symbolize_names: true)
 
-    object = WeatherGiff.new(daily_weather, giff_info )
-    require "pry"; binding.pry
+    object = WeatherGiff.new(daily_weather[:daily][:data], giff_info[:data] )
+
+    render json: GiffSerializer.new(object)
 
   end
 end
