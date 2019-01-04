@@ -3,8 +3,9 @@ class Giff
               :summary,
               :id,
               :giff_url
-              
+
   def initialize(hash)
+
     @time = hash[0][:time]
     @summary = hash[0][:summary]
     @id = hash[1][:id]
