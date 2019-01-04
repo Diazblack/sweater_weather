@@ -21,6 +21,7 @@ VCR.configure do |config|
   config.configure_rspec_metadata!
   config.filter_sensitive_data("<X-Mashape-Key>") { ENV['city_geo_key'] }
   config.filter_sensitive_data("<dark_sky_key>") { ENV['dark_sky_key'] }
+  config.filter_sensitive_data("<giphy_api_key>") { ENV['giphy_api_key'] }
 end
 begin
   ActiveRecord::Migration.maintain_test_schema!
@@ -70,4 +71,9 @@ end
 def stub_dark_sky_gift_api_call
   stub_request(:get, "https://api.darksky.net/forecast/#{ENV['dark_sky_key']}/39.740002,-104.980003?exclude=currently,minutely,hourly,alerts,flags").
   to_return(body: File.read("./spec/fixtures/giff_weather_info.json"))
+end
+
+def stub_giphy_api_call
+  stub_request(:get, "http://api.giphy.com/v1/gifs/search?q=weather&api_key=#{ENV['giphy_api_key']}&limit=8").
+  to_return(body: File.read("./spec/fixtures/giff_info.json"))
 end

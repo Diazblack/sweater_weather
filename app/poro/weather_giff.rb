@@ -3,7 +3,7 @@ class WeatherGiff
               :giffs
   def initialize(weather, giff)
     @id = rand(0..11111111)
-    @giffs = get_giff(weather, giff)
+    @daily_giffs = get_giff(weather, giff)
   end
 
   def get_giff(data_1, data_2 )
