@@ -9,7 +9,19 @@ end
 
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'webmock/rspec'
+require 'vcr'
 
+
+VCR.configure do |config|
+  config.allow_http_connections_when_no_cassette = true
+  config.ignore_localhost = true
+  config.cassette_library_dir = 'spec/cassettes'
+  config.hook_into :webmock
+  config.configure_rspec_metadata!
+  config.filter_sensitive_data("<X-Mashape-Key>") { ENV['city_geo_key'] }
+  config.filter_sensitive_data("<dark_sky_key>") { ENV['dark_sky_key'] }
+end
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
@@ -43,4 +55,14 @@ Shoulda::Matchers.configure do |config|
 
     with.library :rails
   end
+end
+
+def stub_city_geo_api_call
+  stub_request(:get, "https://devru-latitude-longitude-find-v1.p.mashape.com/latlon.php?location=Denver,CO").
+  to_return(body: File.read("./spec/fixtures/city_geo_coordinates.json"))
+end
+
+def stub_dark_sky_api_call
+  stub_request(:get, "https://api.darksky.net/forecast/#{ENV['dark_sky_key']}/39.740002,-104.980003?exclude=minutely,flags").
+  to_return(body: File.read("./spec/fixtures/darksky_weather_info.json"))
 end

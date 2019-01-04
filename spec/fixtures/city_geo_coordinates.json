@@ -1,0 +1,17 @@
+{
+    "powerdBy": "deVru",
+    "Results": [
+        {
+            "name": "Denver, Colorado",
+            "type": "city",
+            "c": "US",
+            "zmw": "80201.1.99999",
+            "tz": "America/Denver",
+            "tzs": "MST",
+            "l": "/q/zmw:80201.1.99999",
+            "ll": "39.740002 -104.980003",
+            "lat": "39.740002",
+            "lon": "-104.980003"
+        }
+    ]
+}

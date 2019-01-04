@@ -8,6 +8,7 @@ gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'faraday'
 gem 'fast_jsonapi'
+gem 'figaro'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -17,7 +18,8 @@ group :development, :test do
   gem 'simplecov'
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.1'
-
+  gem 'webmock'
+  gem 'vcr'
 end
 
 group :development do
