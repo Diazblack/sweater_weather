@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
     if params[:password] == params[:password_confirmation] && user.save
       render json: UserSerializer.new(user), status: 201
     else
-      render json: "Email already exists or password confirmation don't match", status: 400
+      render json: "Email already exists or password confirmation don't match", status: 422
     end
   end
 

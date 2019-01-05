@@ -24,7 +24,7 @@ describe 'Our API key' do
 
     post "/api/v1/users?email=whatever@example.com&password=password&password_confirmation=password"
 
-    expect(response.status).to eq(400)
+    expect(response.status).to eq(422)
 
     expect(response.body).to eq("Email already exists or password confirmation don't match")
 
@@ -34,7 +34,7 @@ describe 'Our API key' do
 
     post "/api/v1/users?email=whatever@example.com&password=password&password_confirmation=password_!@!W@"
 
-    expect(response.status).to eq(400)
+    expect(response.status).to eq(422)
 
     expect(response.body).to eq("Email already exists or password confirmation don't match")
 
