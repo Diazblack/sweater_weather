@@ -13,7 +13,7 @@ describe "Darksky API" do
 
     we_info = JSON.parse(response.body, symbolize_names: true)
 
-    expect(we_info[:city]).to eq("America/Denver")
+    expect(we_info[:city]).to eq("Denver, Colorado")
     expect(we_info[:currently][:temp]).to eq(43.49)
     expect(we_info[:hourly].count).to eq(49)
     expect(we_info[:hourly][0][:temp]).to eq(46.15)
