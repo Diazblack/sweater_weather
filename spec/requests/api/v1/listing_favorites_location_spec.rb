@@ -26,4 +26,21 @@ describe 'Listing Favorites' do
     expect(resp[1][:city]).to eq("Golden, Colorado")
     expect(resp[2][:city]).to eq("Gadsden, Alabama")
   end
+
+  scenario 'user send invalid Api key' do
+    user = create(:user, email: "whatever@example.com", password: "password")
+    location_1 = create(:favorite, user: user, location: "Denver, CO")
+    location_2 = create(:favorite, user: user, location: "Golden, CO")
+    location_3 = create(:favorite, user: user, location: "Gadsden, AL")
+    
+    params = {
+      "api_key": "potatoes"
+    }
+
+    get '/api/v1/favorites', params: params
+
+    expect(response.status).to eq(401)
+
+    expect(response.body).to eq("Error, Unauthorized")
+  end
 end
