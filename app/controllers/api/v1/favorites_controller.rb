@@ -18,6 +18,17 @@ class Api::V1::FavoritesController < ApplicationController
     end
   end
 
+  def destroy
+    if find_user
+      fav_to_delete = find_user.favorites.find_by(location: params[:location])
+      fav_to_delete.delete if fav_to_delete
+      favorites = find_user.favorites
+      render json: WeatherFacade.new(favorites: favorites).favorites_weather
+    else
+      render json: "Error, Unauthorized", status: 401
+    end
+
+  end
   private
 
   def params_location
