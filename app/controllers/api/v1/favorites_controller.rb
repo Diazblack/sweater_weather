@@ -2,8 +2,7 @@ class Api::V1::FavoritesController < ApplicationController
   def index
     if find_user
       favorites = find_user.favorites
-      weather_array = WeatherFacade.new(favorites: favorites).favorites_weather
-      render json: weather_array, status: 200
+      render json: WeatherFacade.new(favorites: favorites).favorites_weather, status: 200
     else
       render json: "Error, Unauthorized", status: 401
     end
@@ -20,9 +19,7 @@ class Api::V1::FavoritesController < ApplicationController
 
   def destroy
     if find_user
-      fav_to_delete = find_user.favorites.find_by(location: params[:location])
-      fav_to_delete.delete if fav_to_delete
-      favorites = find_user.favorites
+      favorites = find_user.delete_favorite(params[:location])
       render json: WeatherFacade.new(favorites: favorites).favorites_weather
     else
       render json: "Error, Unauthorized", status: 401
