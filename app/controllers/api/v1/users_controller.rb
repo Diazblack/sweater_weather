@@ -1,6 +1,5 @@
 class Api::V1::UsersController < ApplicationController
   def create
-
     user = User.new(user_params)
     if params[:password] == params[:password_confirmation] && user.save
       render json: UserSerializer.new(user), status: 201

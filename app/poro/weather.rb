@@ -4,11 +4,12 @@ class Weather
               :hourly,
               :daily
 
-  def initialize(data)
-    @city = data[:timezone]
-    @currently = current_weather(data[:currently])
-    @hourly = hourly_weather(data[:hourly][:data])
-    @daily = daily_weather(data[:daily][:data])
+  def initialize(weather_data, coordinate_data)
+    @city = coordinate_data.city
+    @country = coordinate_data.country
+    @currently = current_weather(weather_data[:currently])
+    @hourly = hourly_weather(weather_data[:hourly][:data])
+    @daily = daily_weather(weather_data[:daily][:data])
   end
 
   def current_weather(hash)

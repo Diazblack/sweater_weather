@@ -1,8 +1,17 @@
 class Api::V1::FavoritesController < ApplicationController
+  def index
+    if find_user
+      favorites = find_user.favorites
+      weather_array = WeatherFacade.new(favorites: favorites).favorites_weather
+      render json: weather_array, status: 200
+    else
+      render json: "Error, Unauthorized", status: 401
+    end
+  end
+
   def create
-    user = User.find_by(api_key: params[:api_key])
-    if user && params_location
-      location = user.favorites.create(params_location)
+    if find_user && params_location
+      location = find_user.favorites.create(params_location)
       render json: FavoritesSerializer.new(location)
     else
       render json: "Error, Unauthorized", status: 401
@@ -13,5 +22,9 @@ class Api::V1::FavoritesController < ApplicationController
 
   def params_location
     params.permit(:location)
+  end
+
+  def find_user
+    User.find_by(api_key: params[:api_key])
   end
 end
