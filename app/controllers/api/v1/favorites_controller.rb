@@ -1,4 +1,5 @@
 class Api::V1::FavoritesController < ApplicationController
+  
   def index
     if find_user
       favorites = find_user.favorites
@@ -24,7 +25,6 @@ class Api::V1::FavoritesController < ApplicationController
     else
       render json: "Error, Unauthorized", status: 401
     end
-
   end
   private
 
