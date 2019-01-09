@@ -1,12 +1,15 @@
 require 'rails_helper'
 
 describe 'Favorites' do
+  before(:each) do
+    @user = create(:user, email: "whatever@example.com", password: "password")
+  end
   scenario 'user can favorite their location' do
-    user = create(:user, email: "whatever@example.com", password: "password")
+
 
     params = {
       "location": "Denver, CO",
-      "api_key": "#{user.api_key}"
+      "api_key": "#{@user.api_key}"
     }
 
     post '/api/v1/favorites', params: params
@@ -20,7 +23,6 @@ describe 'Favorites' do
   end
 
   scenario 'user send invalid Api key' do
-    user = create(:user, email: "whatever@example.com", password: "password")
 
     params = {
       "location": "Denver, CO",

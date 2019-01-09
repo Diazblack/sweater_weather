@@ -13,4 +13,10 @@ class User < ApplicationRecord
   def create_key
     self.api_key = SecureRandom.base64(30)
   end
+
+  def delete_favorite(location)
+    fav_to_delete = self.favorites.find_by(location: location)
+    fav_to_delete.delete if fav_to_delete
+    self.favorites
+  end
 end

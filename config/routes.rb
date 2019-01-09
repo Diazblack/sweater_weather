@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :forecast, only: [:index]
       resources :users, only: [:create]
       resources :sessions, only: [:create]
+      delete "/favorites", to: "favorites#destroy"
       resources :favorites, only: [:index, :create]
     end
   end

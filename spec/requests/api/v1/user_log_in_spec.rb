@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 describe 'User log in' do
-  scenario 'send correct credentials and receive API key' do
-    user = create(:user, email: "whatever@example.com", password: "password", api_key: "potato")
+  before(:each) do
+    @user = create(:user, email: "whatever@example.com", password: "password", api_key: "potato")
+  end
 
+  scenario 'send correct credentials and receive API key' do
     user_params =  {
       "email": "whatever@example.com",
       "password": "password"
@@ -15,11 +17,10 @@ describe 'User log in' do
 
     resp = JSON.parse(response.body, symbolize_names: true)
 
-    expect(resp[:data][:attributes][:api_key]).to eq(user.api_key)
+    expect(resp[:data][:attributes][:api_key]).to eq(@user.api_key)
   end
 
   scenario 'send incorrect credentials and receive API key' do
-    user = create(:user, email: "whatever@example.com", password: "password", api_key: "potato")
 
     user_params =  {
       "email": "theotherever@example.com",
