@@ -10,6 +10,7 @@ gem 'faraday'
 gem 'fast_jsonapi'
 gem 'figaro'
 gem 'bcrypt'
+gem 'rack-cors', require: 'rack/cors'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
